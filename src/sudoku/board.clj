@@ -1,4 +1,4 @@
-(ns sudoko.board
+(ns sudoku.board
   (:require [ysera.test :refer [is is-not is=]]
             [clojure.set :as set]))
 

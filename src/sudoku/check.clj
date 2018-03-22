@@ -1,6 +1,6 @@
-(ns sudoko.check
+(ns sudoku.check
   (:require [ysera.test :refer [is is-not is=]]
-            [sudoko.board :as board]))
+            [sudoku.board :as board]))
 
 (defn solved-part?
   {:test (fn []
