@@ -29,10 +29,10 @@
           #{}
           board))
 
-(defn get-quadrant
+(defn get-square
   {:test (fn []
            (is= (-> #{{:x 0 :y 4} {:x 0 :y 2} {:x 2 :y 0} {:x 2 :y 2} {:x 4 :y 0}}
-                    (get-quadrant 0 0))
+                    (get-square 0 0))
                 #{{:x 0 :y 2} {:x 2 :y 0} {:x 2 :y 2}}))}
   [board row column]
   (let [row-base (* 3 row)
