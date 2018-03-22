@@ -47,14 +47,19 @@
             #{}
             board)))
 
-(defn from-row
+(defn- from-row
   {:test (fn []
+           (is= (from-row 0 " 5 ")
+                #{{:x 1 :y 0 :v 5}})
            (is= (from-row 0 "12")
                 #{{:x 0 :y 0 :v 1} {:x 1 :y 0 :v 2}}))}
   [y row]
   (->> row
        (map-indexed (fn [x c]
-                      {:x x :y y :v (- (int c) (int \0))}))
+                      (let [v (- (int c) (int \0))]
+                        (when (and (>= v 0) (<= v 9))
+                          {:x x :y y :v v}))))
+       (filter identity)
        (into #{})))
 ;
 (defn from
@@ -62,6 +67,8 @@
            (is= (from "12" "34")
                 #{{:x 0 :y 0 :v 1} {:x 1 :y 0 :v 2}
                   {:x 0 :y 1 :v 3} {:x 1 :y 1 :v 4}})
+           (is= (from "1 " " 4")
+                #{{:x 0 :y 0 :v 1} {:x 1 :y 1 :v 4}})
            (is= (from "172549683"
                       "645873219"
                       "389261745"
