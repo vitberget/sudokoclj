@@ -104,3 +104,34 @@
       (recur (inc y)
              (rest r)
              (set/union result (from-row y (first r)))))))
+
+(defn get-cell
+  {:test (fn []
+           (is= (get-cell (from "12" "34") 0 0)
+                {:x 0 :y 0 :v 1})
+           (is= (get-cell (from " 2" "34") 0 0)
+                nil))}
+  [board x y]
+  (first
+    (->> board
+         (filter (fn [c] (and (= (:x c) x)
+                              (= (:y c) y)))))))
+
+(defn to-strings
+  {:test (fn []
+           (is= (to-strings (from "12" "34"))
+                ["12       "
+                 "34       "
+                 "         "
+                 "         "
+                 "         "
+                 "         "
+                 "         "
+                 "         "
+                 "         "]))}
+  [board]
+  (for [y (range 9)]
+    (reduce str
+            (for [x (range 9)]
+              (or (:v (get-cell board x y)) \space)))))
+
