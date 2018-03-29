@@ -4,3 +4,6 @@
             [sudoku.check :as check]
             [ysera.test :refer [is is-not is=]]))
 
+(defn solve
+  [board]
+  board)
