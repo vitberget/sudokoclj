@@ -14,15 +14,12 @@
                 (board/from "123456789")))}
   [board row digit]
   (loop [x 0]
-    (cond
-      (> x 8)
+    (if (> x 8)
       board
-
-      (nil? (:v (board/get-cell board x row)))
-      (conj board {:x x :y row :v digit})
-
-      :else
-      (recur (inc x)))))
+      (let [cell (board/get-cell board x row)]
+        (if (nil? (:v cell))
+          (conj board (merge cell {:x x :y row :v digit}))
+          (recur (inc x)))))))
 
 (defn solve-row
   {:test (fn []

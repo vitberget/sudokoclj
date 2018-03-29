@@ -98,7 +98,6 @@
            (is= (from (list "12" "34"))
                 (from "12" "34")))}
   [& rows]
-  (println "BBB" (pr-str rows))
   (let [rows (if (not (string? (first rows)))
                (first rows)
                rows)]
