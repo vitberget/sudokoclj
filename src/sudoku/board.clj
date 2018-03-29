@@ -94,8 +94,14 @@
                   {:x 5, :y 6, :v 5} {:x 7, :y 4, :v 7} {:x 8, :y 3, :v 1} {:x 1, :y 8, :v 2} {:x 1, :y 1, :v 4}
                   {:x 5, :y 5, :v 8} {:x 6, :y 5, :v 4} {:x 3, :y 6, :v 7} {:x 8, :y 2, :v 5} {:x 5, :y 8, :v 4}
                   {:x 2, :y 3, :v 6} {:x 5, :y 2, :v 1} {:x 8, :y 0, :v 3} {:x 6, :y 0, :v 6} {:x 3, :y 7, :v 6}
-                  {:x 1, :y 0, :v 7}}))}
+                  {:x 1, :y 0, :v 7}})
+           (is= (from (list "12" "34"))
+                (from "12" "34")))}
   [& rows]
+  (println "BBB" (pr-str rows))
+  (let [rows (if (not (string? (first rows)))
+               (first rows)
+               rows)]
   (loop [y 0
          r rows
          result #{}]
@@ -103,7 +109,7 @@
       result
       (recur (inc y)
              (rest r)
-             (set/union result (from-row y (first r)))))))
+             (set/union result (from-row y (first r))))))))
 
 (defn get-cell
   {:test (fn []

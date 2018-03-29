@@ -1,3 +1,6 @@
 (ns sudoku.solve
-  (:require [sudoku.board :as board]
-            [sudoku.check :as check]))
+  (:require [clojure.set :as set]
+            [sudoku.board :as board]
+            [sudoku.check :as check]
+            [ysera.test :refer [is is-not is=]]))
+
